@@ -1,4 +1,5 @@
 import csv
+import math as m
 """
 Este módulo incluye un conjunto de funciones que trabaja con diccionarios.
 
@@ -70,11 +71,33 @@ def reduce(diccionario, atributo):
         if atributo in diccionario[i]:
             lista.append(diccionario[i][atributo])
         else:
-            raise ValueError("El atributo no existe")
+            print("Error")
+            #raise ValueError("El atributo no existe")
     return lista
 
 def silhouette(lista1, lista2):
+    """Calcula el coeficiente de silhouette de la primera lista
+        Args:
+        lista1: primera lista
+        lista2: segunda lista
+        Return:
+        coeficiente: coeficiente de silhouette
+    """
     a_i = 0
     b_i = 0
+    s_i = 0
     for i in lista1:
-        coeficiente_silhouette = 0
+        for j in lista1:
+            if (lista1.index(i) != lista1.index(j)):
+                raiz = m.sqrt(m.pow(abs(int(i)-int(j))))
+                a_i += raiz
+    for i in lista1:
+        for j in lista2:
+            raiz = m.sqrt(m.pow(abs(int(i)-int(j))))
+            b_i += raiz
+    if a_1 > b_1:
+        s_i = (b_i-a_i)/a_i
+    else:
+        s_i = (b_i-a_i)/b_i
+    coeficiente = s_i / len(lista1)
+    return coeficiente

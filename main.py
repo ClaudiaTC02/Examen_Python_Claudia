@@ -8,5 +8,9 @@ try:
     #pprint(d_r)
     l = functions.reduce(d_w, 'alcohol')
     #print(l)
+    l2 = functions.reduce(d_r, 'alcohol')
+    print(l2)
+    c = functions.silhouette(l, l2)
+    print(c)
 except ValueError:
     print("Ha ocurrido la excepción ValueError")
