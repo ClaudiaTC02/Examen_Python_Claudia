@@ -1,5 +1,17 @@
 import csv
+"""
+Este módulo incluye un conjunto de funciones que trabaja con diccionarios.
+
+Autora: Claudia Torres Cruz
+
+"""
 def read_data(fichero):
+    """Lee un fichero csv y sus elementos los introduce en un diccionario, con clave datoX donde X es el número
+        Args:
+        fichero: Fichero csv
+        Return:
+        diccionario: Diccionario con los elementos
+    """
     diccionario = dict()
     titulos = []
     with open(fichero, 'r') as file:
@@ -27,5 +39,23 @@ def read_data(fichero):
     return diccionario
 
 def split(diccionario):
+    """Separa un diccionario según su tipo, white y red
+        Args:
+        diccionario: Diccionario que queremos recibir
+        Return:
+        diccionario_white: Diccionario con todos los datos cuyo type es white sin el atributo type
+        diccionario_red: Diccionario con todos los datos cuyo type es red sin el atributo type
+    """
     diccionario_white = dict()
     diccionario_red = dict()
+    for i in diccionario:
+        if(diccionario[i]['type'] == 'white'):
+            diccionario_white.update({i : diccionario[i]})
+            diccionario_white.get(i).pop('type')
+        elif(diccionario[i]['type'] == 'red'):
+            diccionario_red.update({i : diccionario[i]})
+            diccionario_red.get(i).pop('type')
+    return diccionario_white, diccionario_red
+
+def reduce(diccionario, atributo):
+    lista = []
