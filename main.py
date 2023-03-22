@@ -1,5 +1,11 @@
+# ----------------------------------------------------------------
+# Autora: Claudia Torres Cruz
+# ----------------------------------------------------------------
 import functions
 from pprint import pprint
+# ----------------------------------------------------------------
+# main()
+# ----------------------------------------------------------------
 try:
     res = functions.read_data("winequality.csv")
     #pprint(res, width=100)
@@ -9,7 +15,7 @@ try:
     l = functions.reduce(d_w, 'alcohol')
     #print(l)
     l2 = functions.reduce(d_r, 'alcohol')
-    print(l2)
+    #print(l2)
     c = functions.silhouette(l, l2)
     print(c)
 except ValueError:

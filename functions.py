@@ -6,6 +6,9 @@ Este módulo incluye un conjunto de funciones que trabaja con diccionarios.
 Autora: Claudia Torres Cruz
 
 """
+# ----------------------------------------------------------------
+# read_data
+# ----------------------------------------------------------------
 def read_data(fichero):
     """Lee un fichero csv y sus elementos los introduce en un diccionario, con clave datoX donde X es el número
         Args:
@@ -38,7 +41,9 @@ def read_data(fichero):
     if (len(diccionario.keys()) < 10):
         raise ValueError("Hay menos de 10 líneas con todos los datos completos")
     return diccionario
-
+# ----------------------------------------------------------------
+# split
+# ----------------------------------------------------------------
 def split(diccionario):
     """Separa un diccionario según su tipo, white y red
         Args:
@@ -57,7 +62,9 @@ def split(diccionario):
             diccionario_red.update({i : diccionario[i]})
             diccionario_red.get(i).pop('type')
     return diccionario_white, diccionario_red
-
+# ----------------------------------------------------------------
+# reduce
+# ----------------------------------------------------------------
 def reduce(diccionario, atributo):
     """Almacena en una lista dado un diccionario los valores cuyo atributo es el dado a la funcion
         Args:
@@ -71,10 +78,11 @@ def reduce(diccionario, atributo):
         if atributo in diccionario[i]:
             lista.append(diccionario[i][atributo])
         else:
-            print("Error")
-            #raise ValueError("El atributo no existe")
+            raise ValueError("El atributo no existe")
     return lista
-
+# ----------------------------------------------------------------
+# silhouette
+# ----------------------------------------------------------------
 def silhouette(lista1, lista2):
     """Calcula el coeficiente de silhouette de la primera lista
         Args:
@@ -85,19 +93,16 @@ def silhouette(lista1, lista2):
     """
     a_i = 0
     b_i = 0
-    s_i = 0
-    for i in lista1:
-        for j in lista1:
-            if (lista1.index(i) != lista1.index(j)):
-                raiz = m.sqrt(m.pow(abs(int(i)-int(j))))
-                a_i += raiz
+    suma1 = 0
+    suma2 = 0
+    for i in range(1, len(lista1)):
+        suma1+=1
+        a_i += m.sqrt(m.pow(abs(float((lista1[0])) - float((lista1[i]))), 2))
+    a_i = a_i / suma1
     for i in lista1:
         for j in lista2:
-            raiz = m.sqrt(m.pow(abs(int(i)-int(j))))
-            b_i += raiz
-    if a_1 > b_1:
-        s_i = (b_i-a_i)/a_i
-    else:
-        s_i = (b_i-a_i)/b_i
-    coeficiente = s_i / len(lista1)
+            suma2+=1
+            b_i += m.sqrt(m.pow(abs(float((i)) - float((j))), 2))
+    b_i = b_i / suma2
+    coeficiente = (b_i-a_i)/max(b_i,a_i)
     return coeficiente
