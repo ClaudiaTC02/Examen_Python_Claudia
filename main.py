@@ -1,3 +1,4 @@
 import functions
+from pprint import pprint
 res = functions.read_data("winequality.csv")
-print(res)
+#pprint(res, width=180)
