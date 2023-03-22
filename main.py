@@ -1,2 +1,3 @@
 import functions
-functions.read_data("winequality.csv")
+res = functions.read_data("winequality.csv")
+print(res)
