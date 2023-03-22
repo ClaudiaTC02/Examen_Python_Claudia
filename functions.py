@@ -58,4 +58,23 @@ def split(diccionario):
     return diccionario_white, diccionario_red
 
 def reduce(diccionario, atributo):
+    """Almacena en una lista dado un diccionario los valores cuyo atributo es el dado a la funcion
+        Args:
+        diccionario: Diccionario del que queremos saber valores concretos
+        atributo: atributo del que queremos sacar los valores
+        Return:
+        lista: lista con el valor del diccionario según el atributo dado
+    """
     lista = []
+    for i in diccionario:
+        if atributo in diccionario[i]:
+            lista.append(diccionario[i][atributo])
+        else:
+            raise ValueError("El atributo no existe")
+    return lista
+
+def silhouette(lista1, lista2):
+    a_i = 0
+    b_i = 0
+    for i in lista1:
+        coeficiente_silhouette = 0
